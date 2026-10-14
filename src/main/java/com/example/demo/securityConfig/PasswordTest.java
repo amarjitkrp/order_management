@@ -16,12 +16,12 @@ public class PasswordTest {
 
     @PostConstruct
     public void testPassword() {
-        String password = "Hello@123";
+        String password = "Hello@124";
         String hash = passwordEncoder.encode(password);
 
         System.out.println("Encrypted password: " + hash);
         boolean matched = passwordEncoder.matches(password, hash);
-
+ 
         System.out.println("Password matched: " + matched);
     }
     
