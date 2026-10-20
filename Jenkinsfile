@@ -26,16 +26,17 @@ pipeline {
             steps {
                 bat 'set "KUBECONFIG=C:/ProgramData/Jenkins/.kube/config" && kubectl apply -f deployment.yaml'
                 
-                bat "kubectl set image deployment/order-management order-management=order-management:${env.BUILD_NUMBER}"
-
-                bat 'kubectl rollout status deployment/order-management --timeout=120s'
+                bat 'set "KUBECONFIG=C:/ProgramData/Jenkins/.kube/config" && kubectl set image deployment/order-management order-management=order-management:%BUILD_NUMBER%'
+                
+                bat 'set "KUBECONFIG=C:/ProgramData/Jenkins/.kube/config" && kubectl rollout status deployment/order-management --timeout=120s'
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                bat 'kubectl get pods'
-                bat 'kubectl get service order-management-service'
+               bat 'set "KUBECONFIG=C:/ProgramData/Jenkins/.kube/config" && kubectl get pods'
+
+               bat 'set "KUBECONFIG=C:/ProgramData/Jenkins/.kube/config" && kubectl get service order-management-service'
             }
         }
     }
