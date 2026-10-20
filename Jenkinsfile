@@ -2,8 +2,6 @@
 pipeline {
     agent any
 
-   
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,7 +12,7 @@ pipeline {
 
         stage('Build and Test') {
             steps {
-                bat 'mvn clean package'
+                bat 'mvnw.cmd clean package'
             }
         }
 
