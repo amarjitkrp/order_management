@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                bat 'kubectl apply -f deployment.yaml'
+                bat 'set "KUBECONFIG=C:\ProgramData\Jenkins\.kube\config" && kubectl apply -f deployment.yaml'
 
                 bat "kubectl set image deployment/order-management order-management=order-management:${env.BUILD_NUMBER}"
 
